@@ -18,11 +18,13 @@
         for (let y = 0; y < 5; y++) {
             for (let x = 0; x < 11; x++) {
                 if (x > 0 && x < 10 && y > 0 && y < 4) continue;
+                if (x > 6 && y == 0) continue;
                 g.drawString(Math.randInt(10), 4 + x * 16 , 44 + y * 16);
             }
         }
 
         drawTime();
+        drawDate();
     };
 
     const drawTime = function() {
@@ -38,6 +40,22 @@
 
         for (let i = 0; i < 4; i++) {
             g.drawString(digits[i], 25 + i * 35, 66);
+        }
+    };
+
+    const drawDate = function() {
+        g.setFont("IBM").setColor(0, 255, 255);
+
+        const now = new Date();
+        const digits = [
+            Math.floor(now.getDate() / 10),
+            now.getDate() % 10,
+            Math.floor((now.getMonth() + 1) / 10),
+            (now.getMonth() + 1) % 10,
+        ];
+
+        for (let i = 0; i < 4; i++) {
+            g.drawString(digits[i], 116 + i * 16, 44);
         }
     };
 
